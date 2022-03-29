@@ -1,3 +1,3 @@
-# Breeze
+# Aria
 
-A GUI toolkit made using SFML and modern C++ inspired by Google's material design
+A cross-platform GUI toolkit built using SFML and modern C++ inspired by Google's material design
