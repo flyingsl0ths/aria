@@ -1,13 +1,20 @@
 list(
+  APPEND command_line
+  "${PROJECT_SOURCE_DIR}/include/utils/command_line/command.hpp"
+)
+
+list(
   APPEND core "${PROJECT_SOURCE_DIR}/include/core/aria.hpp"
   "core/aria.cpp" "${PROJECT_SOURCE_DIR}/include/utils/common.hpp"
 )
 
+list(APPEND sources ${command_line} ${core})
+
 if(NOT BUILD_STATIC)
-  add_library(aria SHARED ${core})
+  add_library(aria SHARED ${sources})
 else()
   set(SFML_STATIC_LIBRARIES TRUE)
-  add_library(aria STATIC ${core})
+  add_library(aria STATIC ${sources})
 endif()
 
 target_link_libraries(aria compile-options sfml-graphics)
