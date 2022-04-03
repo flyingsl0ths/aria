@@ -10,7 +10,7 @@ namespace aria::command_line
 	return flag.size() >= 2 && ((flag[1UL] == '-' && flag[0UL] == '-') || flag[0UL] == '-');
 }
 
-std::pair<command, szt> parse_flag(const char* args[], szt current)
+std::pair<command, szt> parse_flag(const char* const args[], szt current)
 {
 	str const flag = args[current];
 
@@ -39,7 +39,8 @@ std::pair<command, szt> parse_flag(const char* args[], szt current)
 
 	const char* const next_arg = args[current + 1UL];
 
-	if (is_flag && (next_arg != nullptr) && next_arg[0UL] != '-')
+	const bool is_value = (next_arg != nullptr) && next_arg[0UL] != '-';
+	if (is_value)
 	{
 		cmd.value = next_arg;
 		++current;
@@ -48,7 +49,7 @@ std::pair<command, szt> parse_flag(const char* args[], szt current)
 	return {cmd, current};
 }
 
-std::optional<command_line_t> parse(const s32 argc, const char* argv[])
+std::optional<command_line_t> parse(const s32 argc, const char* const argv[])
 {
 	if (argc == 0) { return {}; }
 

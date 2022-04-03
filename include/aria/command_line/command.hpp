@@ -27,6 +27,6 @@ using command_line_t = std::vector<command>;
 /// @param argc The number of arguments received
 /// @param argv The arguments themselves
 /// @return parsed command line flags if any
-[[nodiscard]] std::optional<command_line_t> parse(s32 argc, const char* argv[]);
+[[nodiscard]] std::optional<command_line_t> parse(s32 argc, const char* const argv[]);
 
 } // namespace aria::command_line
