@@ -1,7 +1,8 @@
 #include <chrono>
 #include <iostream>
 
-#include <core/aria.hpp>
+#include <aria/aria.hpp>
+#include <aria/utils/time/time.hpp>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
@@ -12,11 +13,12 @@ namespace aria
 
 void runner::run()
 {
+	using namespace utils;
 
-	constexpr u32 WINDOW_WIDTH {1280};
-	constexpr u32 WINDOW_HEIGHT {720};
-	constexpr f32 FPS {1.0F / 60.F};
-	constexpr str WINDOW_NAME {"Breeze"};
+	constexpr u32		   WINDOW_WIDTH {1280};
+	constexpr u32		   WINDOW_HEIGHT {720};
+	constexpr time::time_t FPS {1.0F / 60.F};
+	str constexpr WINDOW_NAME {"Aria"};
 
 	sf::RenderWindow window(
 		sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_NAME.data(), sf::Style::Close);
@@ -33,13 +35,11 @@ void runner::run()
 	rect.setPosition(sf::Vector2f(WINDOW_WIDTH / 2.0F - SHAPE_WIDTH / 2.0F,
 								  WINDOW_HEIGHT / 2.0F - SHAPE_HEIGHT / 2.0F));
 
-	auto then = std::chrono::steady_clock::now();
+	auto then = time::timer_t::now();
 
 	while (window.isOpen())
 	{
-		f32 delta = std::chrono::duration_cast<std::chrono::duration<f32>>(
-						std::chrono::steady_clock::now() - then)
-						.count();
+		time::time_t delta = time::deltaTime(then);
 
 		sf::Event event;
 
