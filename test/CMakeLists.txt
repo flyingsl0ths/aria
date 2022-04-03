@@ -1,7 +1,8 @@
-add_executable(foo foo.cpp "${PROJECT_SOURCE_DIR}/include/utils/common.hpp")
+add_library(test-case INTERFACE)
+target_include_directories(test-case INTERFACE "${PROJECT_SOURCE_DIR}/include"
+                                               "${PROJECT_SOURCE_DIR}/test")
+target_sources(
+  test-case INTERFACE "${PROJECT_SOURCE_DIR}/include/aria/utils/common.hpp"
+                      "test_common.hpp")
 
-target_include_directories(foo PRIVATE "${PROJECT_SOURCE_DIR}/include")
-
-target_link_libraries(foo PRIVATE compile-options)
-
-add_test(NAME FOO_TEST COMMAND foo)
+add_subdirectory(utils/command_line)
