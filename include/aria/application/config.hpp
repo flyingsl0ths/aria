@@ -1,10 +1,10 @@
 #pragma once
 
-#include "aria/window/titlebar_style.hpp"
-#include "command_line/command.hpp"
-#include "utils/common.hpp"
+#include <aria/command_line/command.hpp>
+#include <aria/utils/common.hpp>
+#include <aria/window/titlebar_style.hpp>
 
-namespace aria::app_config
+namespace aria::app
 {
 
 /// @brief A struct used to specify the application's theme
@@ -21,4 +21,4 @@ struct config final
 	std::optional<command_line::command_line_t> args {};
 };
 
-} // namespace aria::app_config
+} // namespace aria::app
