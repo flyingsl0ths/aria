@@ -23,4 +23,4 @@ void load_from_system(cursor_type const type, cursor& window_cursor, sf::RenderW
 	}
 }
 
-} // namespace aria::window::cursor
+} // namespace aria::stage::cursor

@@ -23,10 +23,13 @@ project(
   ${NAME}
   VERSION 0.0.1
   DESCRIPTION ${DESCRIPTION}
-  LANGUAGES CXX)
+  LANGUAGES CXX
+)
 
-configure_file("${PROJECT_SOURCE_DIR}/config.hpp.in"
-               "${PROJECT_BINARY_DIR}/config.hpp")
+configure_file(
+  "${PROJECT_SOURCE_DIR}/config.hpp.in"
+  "${PROJECT_BINARY_DIR}/config.hpp"
+)
 
 if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
   message(FATAL_ERROR "In Source Builds Not Allowed")
@@ -46,8 +49,10 @@ if(NOT SFML_FOUND)
   find_package(Git QUIET)
 
   if(GIT_FOUND)
-    option(BREEZE_SUBMODULES_UPDATE
-           "Init/Update the submodules used by project" TRUE)
+    option(
+      BREEZE_SUBMODULES_UPDATE
+      "Init/Update the submodules used by project" TRUE
+    )
 
     if(BREEZE_SUBMODULES_UPDATE)
       git_update_submodules(FATAL_ERROR)
@@ -60,11 +65,14 @@ add_library(compile-options INTERFACE)
 
 target_compile_features(compile-options INTERFACE cxx_std_17)
 
-if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL
-                                             "GNU")
+if(
+  CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL
+  "GNU"
+)
   target_compile_options(
     compile-options
-    INTERFACE "-Wextra;-Wall;-Wsign-conversion;-Werror;-Wunused-local-typedefs")
+    INTERFACE "-Wextra;-Wall;-Wsign-conversion;-Werror;-Wunused-local-typedefs"
+  )
 endif()
 
 add_subdirectory(src)
