@@ -1,12 +1,11 @@
-#include <chrono>
-#include <iostream>
-
 #include <aria/aria.hpp>
 #include <aria/utils/time/time.hpp>
+#include <aria/window/stage.hpp>
+#include "aria/utils/colors.hpp"
+#include "aria/window/cursor.hpp"
+#include "aria/window/titlebar_style.hpp"
 
-#include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
-#include <SFML/Graphics/RenderTexture.hpp>
 
 namespace aria
 {
@@ -20,24 +19,22 @@ void runner::run()
 	constexpr time::time_t FPS {1.0F / 60.F};
 	str constexpr WINDOW_NAME {"Aria"};
 
-	sf::RenderWindow window(
-		sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_NAME.data(), sf::Style::Close);
-
-	window.setVerticalSyncEnabled(true);
+	stage::window window(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_NAME);
 
 	constexpr f32 SHAPE_WIDTH {150.F};
 	constexpr f32 SHAPE_HEIGHT {150.F};
 
-	auto rect = sf::RectangleShape(sf::Vector2f {SHAPE_WIDTH, SHAPE_HEIGHT});
+	auto rect = sf::RectangleShape({SHAPE_WIDTH, SHAPE_HEIGHT});
 
-	rect.setFillColor(sf::Color::Red);
+	rect.setFillColor(colors::to_color(colors::color_swatch::red_10));
 
-	rect.setPosition(sf::Vector2f(WINDOW_WIDTH / 2.0F - SHAPE_WIDTH / 2.0F,
-								  WINDOW_HEIGHT / 2.0F - SHAPE_HEIGHT / 2.0F));
+	rect.setPosition(
+		{WINDOW_WIDTH / 2.0F - SHAPE_WIDTH / 2.0F, WINDOW_HEIGHT / 2.0F - SHAPE_HEIGHT / 2.0F});
 
 	auto then = time::timer_t::now();
 
-	while (window.isOpen())
+	std::array<f32, 2UL> mousePos {};
+	while (window.is_open())
 	{
 		time::time_t delta = time::deltaTime(then);
 
@@ -47,21 +44,19 @@ void runner::run()
 		{
 			then = std::chrono::steady_clock::now();
 
-			while (window.pollEvent(event))
+			while (window.poll(event))
 			{
-				if (event.type == sf::Event::KeyPressed)
+				if (event.type == sf::Event::Closed) { window.close(); }
+				if (event.type == sf::Event::MouseMoved)
 				{
-					if (bool const closeWindow(event.type == sf::Event::Closed ||
-											   event.key.code == sf::Keyboard::Q);
-						closeWindow)
-					{
-						window.close();
-					}
+					mousePos[0UL] = event.mouseMove.x;
+					mousePos[1UL] = event.mouseMove.y;
 				}
 			}
 
 			window.draw(rect);
 
+			window.draw_cursor(mousePos[0UL], mousePos[1UL]);
 			window.display();
 			window.clear();
 		}

@@ -1,14 +1,28 @@
-list(APPEND command_line
-     "${PROJECT_SOURCE_DIR}/include/aria/command_line/command.hpp"
-     "aria/command_line/command.cpp")
+list(
+  APPEND window
+  "${PROJECT_SOURCE_DIR}/include/aria/window/stage.hpp" "aria/window/stage.cpp"
+  "${PROJECT_SOURCE_DIR}/include/aria/window/cursor.hpp" "aria/window/cursor.cpp"
+  "${PROJECT_SOURCE_DIR}/include/aria/window/titlebar_style.hpp"
+)
 
-list(APPEND time "${PROJECT_SOURCE_DIR}/include/aria/utils/time/time.hpp"
-     "aria/utils/time/time.cpp")
+list(
+  APPEND utils "${PROJECT_SOURCE_DIR}/include/aria/utils/time/time.hpp"
+  "aria/utils/time/time.cpp"
+  "${PROJECT_SOURCE_DIR}/include/aria/utils/common.hpp"
+  "${PROJECT_SOURCE_DIR}/include/aria/utils/colors.hpp" "aria/utils/colors.cpp"
+  "${PROJECT_SOURCE_DIR}/include/aria/utils/image.hpp" "aria/utils/image.cpp"
+  "${PROJECT_SOURCE_DIR}/include/aria/utils/types.hpp"
+)
 
-list(APPEND core "${PROJECT_SOURCE_DIR}/include/aria/aria.hpp" "aria/aria.cpp"
-     "${PROJECT_SOURCE_DIR}/include/aria/utils/common.hpp")
+list(
+  APPEND command_line
+  "${PROJECT_SOURCE_DIR}/include/aria/command_line/command.hpp"
+  "aria/command_line/command.cpp"
+)
 
-list(APPEND sources ${core} ${command_line} ${time})
+list(APPEND core "${PROJECT_SOURCE_DIR}/include/aria/aria.hpp" "aria/aria.cpp")
+
+list(APPEND sources ${core} ${window} ${utils} ${command_line})
 
 if(NOT BUILD_STATIC)
   add_library(aria SHARED ${sources})
@@ -21,4 +35,5 @@ target_link_libraries(aria compile-options sfml-graphics)
 
 target_include_directories(
   aria PUBLIC "${PROJECT_SOURCE_DIR}/include/" "${PROJECT_SOURCE_DIR}/src"
-              "${PROJECT_BINARY_DIR}")
+  "${PROJECT_BINARY_DIR}"
+)
