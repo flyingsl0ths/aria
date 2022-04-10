@@ -1,4 +1,10 @@
 list(
+  APPEND application
+  "${PROJECT_SOURCE_DIR}/include/aria/application/config.hpp"
+  "${PROJECT_SOURCE_DIR}/include/aria/application/application.hpp"
+)
+
+list(
   APPEND window
   "${PROJECT_SOURCE_DIR}/include/aria/window/stage.hpp" "aria/window/stage.cpp"
   "${PROJECT_SOURCE_DIR}/include/aria/window/cursor.hpp" "aria/window/cursor.cpp"
@@ -22,7 +28,7 @@ list(
 
 list(APPEND core "${PROJECT_SOURCE_DIR}/include/aria/aria.hpp" "aria/aria.cpp")
 
-list(APPEND sources ${core} ${window} ${utils} ${command_line})
+list(APPEND sources ${core} ${application} ${window} ${utils} ${command_line})
 
 if(NOT BUILD_STATIC)
   add_library(aria SHARED ${sources})
