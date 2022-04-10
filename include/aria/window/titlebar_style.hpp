@@ -1,6 +1,6 @@
 #pragma once
 
-#include "aria/utils/common.hpp"
+#include <aria/utils/common.hpp>
 
 namespace aria::stage
 {

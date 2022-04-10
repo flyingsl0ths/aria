@@ -3,7 +3,7 @@
 #include <memory>
 #include <optional>
 
-#include "aria/utils/common.hpp"
+#include <aria/utils/common.hpp>
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Sprite.hpp>
