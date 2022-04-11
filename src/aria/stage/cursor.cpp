@@ -1,5 +1,5 @@
-#include <aria/window/cursor.hpp>
-#include <aria/window/stage.hpp>
+#include <aria/stage/cursor.hpp>
+#include <aria/stage/stage.hpp>
 #include "aria/utils/image.hpp"
 
 namespace aria::stage::cursor

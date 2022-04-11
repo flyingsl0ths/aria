@@ -8,8 +8,8 @@
 #include <aria/utils/colors.hpp>
 #include <aria/utils/common.hpp>
 #include <aria/utils/types.hpp>
-#include "aria/window/cursor.hpp"
-#include "aria/window/titlebar_style.hpp"
+#include "aria/stage/cursor.hpp"
+#include "aria/stage/titlebar_style.hpp"
 
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>

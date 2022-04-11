@@ -6,9 +6,9 @@ list(
 
 list(
   APPEND window
-  "${PROJECT_SOURCE_DIR}/include/aria/window/stage.hpp" "aria/window/stage.cpp"
-  "${PROJECT_SOURCE_DIR}/include/aria/window/cursor.hpp" "aria/window/cursor.cpp"
-  "${PROJECT_SOURCE_DIR}/include/aria/window/titlebar_style.hpp"
+  "${PROJECT_SOURCE_DIR}/include/aria/stage/stage.hpp" "aria/stage/stage.cpp"
+  "${PROJECT_SOURCE_DIR}/include/aria/stage/cursor.hpp" "aria/stage/cursor.cpp"
+  "${PROJECT_SOURCE_DIR}/include/aria/stage/titlebar_style.hpp"
 )
 
 list(

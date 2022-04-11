@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include <aria/utils/image.hpp>
-#include <aria/window/stage.hpp>
+#include <aria/stage/stage.hpp>
 
 #include <SFML/Graphics/Image.hpp>
 

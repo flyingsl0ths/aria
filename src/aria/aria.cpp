@@ -1,9 +1,9 @@
 #include <aria/aria.hpp>
 #include <aria/utils/time/time.hpp>
-#include <aria/window/stage.hpp>
+#include <aria/stage/stage.hpp>
 #include "aria/utils/colors.hpp"
-#include "aria/window/cursor.hpp"
-#include "aria/window/titlebar_style.hpp"
+#include "aria/stage/cursor.hpp"
+#include "aria/stage/titlebar_style.hpp"
 
 #include <SFML/Graphics/RectangleShape.hpp>
 
